@@ -26,3 +26,13 @@ def change_player(player)
 	puts "current_player is #{current_player}"
 	current_player
 end
+def full(board)
+	if board.all? {|space| space.include?('o') || space.include?('x')}
+		full = true
+	
+	else
+		full = false
+	end
+	puts "full is #{full}"
+	full
+end

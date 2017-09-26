@@ -23,9 +23,16 @@ class Testttt < Minitest::Test
 		position = 10
 		assert_equal(false, spot_open?(board, position))
 	end
-	def test_player
-		
+	def test_player		
 		assert_equal('x', change_player('o'))
-		
+
+	end
+	def test_full
+		board = ['x', 'o', 'x',  'o', 'x', 'o', 'x', 'o', 'x']
+		assert_equal(true, full(board))
+	end
+	def test_not_full
+		board = ['x', '2', 'x',  'o', 'x', 'o', 'x', 'o', 'x']
+		assert_equal(false, full(board))
 	end
 end

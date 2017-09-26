@@ -16,3 +16,13 @@ def spot_open?(board, position)
 	end
 end
 
+def change_player(player)
+	
+	if player == 'x'
+			current_player = 'o'
+	elsif player == 'o'
+			current_player = "x"
+	end
+	puts "current_player is #{current_player}"
+	current_player
+end

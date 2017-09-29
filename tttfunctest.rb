@@ -35,4 +35,26 @@ class Testttt < Minitest::Test
 		board = ['x', '2', 'x',  'o', 'x', 'o', 'x', 'o', 'x']
 		assert_equal(false, full(board))
 	end
+	 def test_board_win_1
+        board = ["x","o","x","x","o","o","x","o","x"]
+        assert_equal(true, winner?(board))
+    end
+    def test_board_win_2
+        board = ["1","x","3","4","x","6","7","x","9"]
+        assert_equal(true, winner?(board))
+    end
+    def test_board_win_3
+        board = ["o","o","o","4","5","6","7","8","9"]
+        assert_equal(true, winner?(board))
+    end
+    def test_board_false
+        board = ["o","x","o","4","5","6","7","8","9"]
+        assert_equal(false, winner?(board))
+    end
+    def test_cross_win
+        board = ["1","2","x","4","x","6","x","8","9"]
+        assert_equal(true, winner?(board))
+    end
+        
+
 end

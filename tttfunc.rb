@@ -4,15 +4,14 @@ class Board
 	attr_accessor :board,
 
 def initialize()
+	 # set up the board
 	@board=Array.new(9, "")
 end
 def display
-		board = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-	    p " #{board[0]} | #{board[1]} | #{board[2]} "
-	    p "---|---|---"
-	    p " #{board[3]} | #{board[4]} | #{board[5]} "
-	    p "---|---|---"
-	    p " #{board[6]} | #{board[7]} | #{board[8]} "
+		# Splits the array into 3 rows and puts it on the screen
+			puts "\n\n"
+			puts @board.each_slice(3) { |row| puts row.join(" | ") }
+			puts "\n\n"
 
 end									
 

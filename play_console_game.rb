@@ -5,18 +5,22 @@ require_relative 'console_game.rb'
 game = ConsoleGame.new
 
 game.intro
-
-until game.check_winner || game.board.full_board?
-
-	
-# game.get_move
-game.update_board
-game.change_player
 game.display_board
-end
-
-if game.check_winner
-	puts "#{game.active_player.marker} wins!"
-else
-	puts "It's a cat's game!"
-end
+until game.check_winner || game.board.full_board?
+    
+    game.update_board
+    if game.check_winner == false
+    	game.change_player
+        game.display_board
+    end
+end    
+    if
+        game.check_winner == true
+        game.display_board
+		puts "#{game.active_player.marker} wins!"
+		else
+			game.check_winner == false
+			game.display_board
+			puts "It's a cat's game!"
+		
+	end

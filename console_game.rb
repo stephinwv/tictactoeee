@@ -1,6 +1,6 @@
 require_relative 'board.rb'
 require_relative 'console_human.rb'
-require_relative 'unbeatable.rb'
+# require_relative 'unbeatable.rb'
 
 
 class ConsoleGame

@@ -47,7 +47,7 @@ class Board
 	attr_accessor :ttt_board
 
 	def initialize
-		@ttt_board = Array.new(9, ' ')
+		@ttt_board = Array.new(9, " ")
 	end
 
 	def update_position(position, marker)
@@ -56,7 +56,7 @@ class Board
 
 	def valid_position?(position)
 
-		if ttt_board[position] == ' '
+		if ttt_board[position] == " "
 			true
 		else
 			false
@@ -107,10 +107,10 @@ class Board
 		#three, results get set to true because all 3 in a set matched.
 		#Count is reset to 0 for every new inner array item
 		#because it is outside the inner loop.
-		winners.each do |inner_array|
+		winners.each do |winner|
 			count = 0
 
-			inner_array.each do |value|
+			winner.each do |value|
 
 				if ttt_board[value] == marker
 

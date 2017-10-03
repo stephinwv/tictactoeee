@@ -32,7 +32,7 @@ class Sequential < Player
 
 	def get_move(board_state)
 
-		board_state.index(' ')
+		board_state.index(" ")
 	end
 
 end

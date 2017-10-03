@@ -91,8 +91,7 @@ class ConsoleGame
 		elsif input1 == 3
 			@player_1 = RandomAI.new('O')
 
-		elsif input1 == 4
-			@player_1 = UnbeatableAI.new('O')
+		
 
 		else
 			puts "Invalid input, please input 1, 2, 3, or 4"

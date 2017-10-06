@@ -1,5 +1,4 @@
 
-
 class Unbeatable
     attr_accessor :marker, :opponent
     def initialize(marker)
@@ -94,6 +93,27 @@ class Unbeatable
             move = 8
         else 
             move = 56
+        end
+    end
+     def get_fork(ttt_board)
+        if 
+            ttt_board[0] == ''
+            move = 0
+
+        elsif 
+            ttt_board[2] == ''
+            move = 2
+
+        elsif 
+            ttt_board[6] == ''
+            move = 6
+        
+        elsif 
+            ttt_board[8] == ''
+            move = 8
+
+        else 
+            move = 60
         end
     end
 end

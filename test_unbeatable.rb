@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require_relative 'unbeatable.rb'
 require_relative 'board.rb'
 
-class TestUnbeatableAI < Minitest::Test
+class TestUnbeatable < Minitest::Test
 
     def test_win123
         impossible_var = Unbeatable.new('X')
@@ -35,5 +35,14 @@ class TestUnbeatableAI < Minitest::Test
     def test_take_corner_in_func
         impossible_var = Unbeatable.new('X')
         assert_equal(0, impossible_var.get_move(["", "", "", "", "O", "", "", "", ""]))
+    end
+     def test_fork
+        impossible_variable = Unbeatable.new("X")
+        assert_equal(0, impossible_variable.get_fork(["", "", "", "", "", "", "", "", ""]))
+    end
+
+    def test_fork2
+        impossible_variable = Unbeatable.new("X")
+        assert_equal(0, impossible_variable.get_move(["", "", "", "", "O", "", "", "", ""]))
     end
 end

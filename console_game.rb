@@ -1,6 +1,7 @@
 require_relative 'board.rb'
 require_relative 'console_human.rb'
-# require_relative 'unbeatable.rb'
+
+require_relative 'unbeatable.rb'
 
 
 class ConsoleGame
@@ -91,7 +92,9 @@ class ConsoleGame
 		elsif input1 == 3
 			@player_1 = RandomAI.new('O')
 
-		
+		elsif input1 == 4
+			@player_1 == Unbeatable.new('O')
+			
 
 		else
 			puts "Invalid input, please input 1, 2, 3, or 4"
@@ -120,7 +123,7 @@ class ConsoleGame
 			@player_2 = RandomAI.new('X')
 
 		elsif input2 == 4
-			@player_2 = UnbeatableAI.new('X')
+			@player_2 = Unbeatable.new('X')
 		else
 			puts "Invalid input, please input 1, 2, 3, or 4."
 			get_player2

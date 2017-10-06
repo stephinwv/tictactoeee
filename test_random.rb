@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require_relative '../player_classes.rb'
+require_relative 'console_human.rb'
 
 class TestRandomAI < Minitest::Test
 
@@ -8,9 +8,10 @@ class TestRandomAI < Minitest::Test
 		assert_equal(0, random_ai.get_move([' ', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X']))
 	end
 
-	def test_random_ai_selects_random_position_345
+	def test_random_ai_selects_random_position_34
 		random_ai = RandomAI.new('X')
 		assert_equal(3, random_ai.get_move(['X', 'X', 'X', ' ', 'X', 'X', 'X', 'X', 'X']))
+		assert_equal(4, random_ai.get_move(['X', 'X', 'X', 'X', ' ', 'X', 'X', 'X', 'X']))
 	end
 
 	def test_random_range_012

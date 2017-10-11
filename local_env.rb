@@ -1,0 +1,5 @@
+ENV['host']='phonebook.cspgbpltwfih.us-east-2.rds.amazonaws.com'
+ENV['port']='5432'
+ENV['dbname']='minedmindsphone'
+ENV['user']='Stephstar13'
+ENV['password']='Rog2steph'

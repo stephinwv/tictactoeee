@@ -28,4 +28,15 @@ body {
 	
 }
 
+.square_size {
+	border-radius: 25px;
+	border: none;
+	width: 100%;
+	height: 100%;
+	font-size: 4.3em;
+	color: black;
+	text-shadow: 2px 2px 5px teal;
+	box-shadow: inset -1px -1px 10px teal !important;
+
+}
 

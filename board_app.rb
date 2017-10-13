@@ -31,6 +31,7 @@ class Board
 	end
 
 	def full_board?
+		#If everything in the board is a string then the board is condidered full.
 		if ttt_board.all? { |x| x.is_a?(String) }
 			true
 		else
@@ -81,7 +82,7 @@ class Board
 			end
 		end
 		#Calls our results which is false by default.
-		#Only true if a set of the three combos matches.
+		#Only true if a set of the three combo matches.
 		results
 
 	end

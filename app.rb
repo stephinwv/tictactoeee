@@ -85,12 +85,58 @@ enable :sessions
 		#Checks to see the if the position chosed by the human user is valid, if so then 
 		#update said position.
 		if session[:board].valid_position?(move)
+			puts move
 			session[:board].update_position(move, session[:active_player].marker)
 			redirect '/check_game_state'
 		else
+			puts move
 		 	redirect '/board'
 		end
 
 	end
 
-	
+	get '/check_game_state' do
+		#Checks the status of the board, and gives a message of the results,
+		#whether there is a winner or a tie. If none of these scenerios are found then 
+		#another move will be made, until one is met
+		if session[:board].winner?(session[:active_player].marker)
+
+			message = "#{session[:active_player].marker} is the winner!"
+
+			erb :game_over, :locals => {board: session[:board], message: message}
+		
+		elsif session[:board].full_board?
+
+			message = "Here kitty, kitty, kitty!"
+		
+			erb :game_over, :locals => {board: session[:board], message: message}
+		
+		else
+			if session[:active_player] == session[:player1]
+				session[:active_player] = session[:player2]
+			else
+				session[:active_player] = session[:player1]
+			end
+
+			if session[:active_player] == session[:player1] && session[:human1] == 'yes' || session[:active_player] == session[:player2] && session[:human2] == 'yes'
+				redirect '/board'
+			else
+				redirect '/make_move'
+			end
+		end
+
+	end
+
+	get '/clear_sessions' do
+		#A link appears under the game over display of the board to play again. This link
+		#erases and resets all the sessions, and takes you to the welcome page to try again.
+		session[:board] = nil
+		session[:active_player] = nil
+		session[:human1] = nil
+		session[:human2] = nil
+		session[:player1_type] = nil
+		session[:player2_type] = nil
+
+		redirect '/'
+
+	end

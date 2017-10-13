@@ -48,7 +48,7 @@ body {
 
 .title {
 	font-family: American Typewriter;
-	font-size: 3em;
+	font-size: 5em;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 500;
@@ -65,7 +65,7 @@ body {
 .title_2 {
 	font-family: American Typewriter;
 	text-shadow: 2px 2px 10px teal;
-	font-size: 2px;
+	font-size: 4em;
 
 	font-weight: 500;
 }

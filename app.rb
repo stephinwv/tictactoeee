@@ -70,7 +70,7 @@ enable :sessions
 	end
 
 	get '/make_move' do
-		# This will go through the functions designed to determine the next move and 
+		# This will go through the functions passing in the variables, designed to determine the next move and 
 		#update the position for the AI as such
 		move = session[:active_player].get_move(session[:board].ttt_board)
 		session[:board].update_position(move, session[:active_player].marker)

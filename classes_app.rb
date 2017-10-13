@@ -1,3 +1,4 @@
+#Overall class of players 
 class Player
 
 	attr_accessor :marker

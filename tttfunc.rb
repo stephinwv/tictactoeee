@@ -1,3 +1,6 @@
+# This is the original file that I started with. I went another direction and no longer use this file
+# however I wanted to keep it intact and part of the project not only to show my thought process, but
+# also for reference or a future teaching tool.
 require "sinatra"
 class Board
 	class Board

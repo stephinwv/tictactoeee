@@ -1,1 +1,31 @@
 
+
+body {
+  background: #eff4ff;
+ 
+  font-family: 'Handlee', cursive;
+}
+
+/*.middle_columns {
+	border-right: 5px solid black;
+	border-left: 5px solid black;
+}
+
+.top_bottom {
+	border-top: 5px solid black;text-shadow: 2px 2px 5px teal;
+	box-shadow: inset -1px -1px 10px teal !important;
+	border-bottom: 5px solid black;
+}*/
+
+#table_size {
+	
+	margin-right: auto;
+	margin-top: auto;
+	margin-left: auto;
+	margin-bottom: auto;
+	width: 400px;
+	height: 400px;
+	
+}
+
+

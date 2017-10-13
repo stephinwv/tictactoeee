@@ -14,7 +14,7 @@ class Human < Player
 end
 
 class Sequential < Player
-
+	#basically finds the next open spot that is an integer. A letter would be skipped
 	attr_accessor :marker
 	def get_move(board_state)
 		board_state.index { |x| x.is_a?(Integer) }
@@ -23,7 +23,8 @@ class Sequential < Player
 end
 
 class RandomAI < Player
-
+#Determines which index positions are integers, pushes them into an array an
+#randomly choosing from that array with a .sample
 	attr_accessor :marker
 
 	def get_move(board_state)

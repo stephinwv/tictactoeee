@@ -34,6 +34,8 @@ db = PG::Connection.new(db_params)
 	end
 
 	post '/select_players' do
+		session[:pname1] = params[:pname1]
+		session[:pname2] = params[:pname2]
 		session[:player1_type] = params[:player1]
 		session[:player2_type] = params[:player2]
 		session[:human1] = 'no'
@@ -85,7 +87,7 @@ db = PG::Connection.new(db_params)
 
 	get '/board' do
 
-		erb :main_board, :locals => {player1: session[:player1], player2: session[:player2], active_player: session[:active_player].marker, board: session[:board]}
+		erb :main_board, :locals => {pname1: session[:pname1], pname2: session[:pname2], player1: session[:player1], player2: session[:player2], active_player: session[:active_player].marker, board: session[:board]}
 
 	end
 
@@ -122,19 +124,21 @@ db = PG::Connection.new(db_params)
 		#another move will be made, until one is met
 		if session[:board].winner?(session[:active_player].marker)
 
-			message = "#{session[:active_player].marker} is the winner!"
+			message = '{session[:active_player].marker} is the winner!'
+
 			player1 = session[:player1]
 			player2 = session[:player2]
 			winner = session[:active_player].marker
-			db.exec("INSERT INTO tictactoe(player1, player2, winner) VALUES('pname1 #{session[:player1]}', 'pname2 #{session[:player2]}', '#{session[:active_player].marker}')");
+					db.exec("INSERT INTO tictactoe(player1, player2, winner) VALUES('#{session[:pname1]}  #{session[:player1]}', '#{session[:pname2]}  #{session[:player2]}', '#{session[:active_player].marker} #{message}')")
 			erb :game_over, :locals => {board: session[:board], message: message}
 		
 		elsif session[:board].full_board?
 
-			message = "Here kitty, kitty, kitty!"
-		
+			message = 'Here kitty, kitty, kitty!'
+
+			db.exec("INSERT INTO tictactoe(player1, player2, winner) VALUES('#{session[:pname1]}  #{session[:player1]}', '#{session[:pname2]}  #{session[:player2]}',  '#{message}')")
 			erb :game_over, :locals => {board: session[:board], message: message}
-		
+
 		else
 			if session[:active_player] == session[:player1]
 				session[:active_player] = session[:player2]

@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'sinatra'
-
+require 'pony'
 require 'pg'
 
 require_relative 'board_app.rb'
@@ -27,15 +27,14 @@ db = PG::Connection.new(db_params)
 	
 		session[:board] = Board.new
 		#Creating a new instance of the class Board
-		phonebook = db.exec("Select * From tictactoe");
+		tictactoe = db.exec("Select * From tictactoe");
 		
 		erb :welcome, :locals => {board: session[:board]}
 
 	end
 
 	post '/select_players' do
-		session[:pname1] = params[:pname1]
-		session[:pname2] = params[:pname2]
+		
 		session[:player1_type] = params[:player1]
 		session[:player2_type] = params[:player2]
 		session[:human1] = 'no'
@@ -124,19 +123,19 @@ db = PG::Connection.new(db_params)
 		#another move will be made, until one is met
 		if session[:board].winner?(session[:active_player].marker)
 
-			message = '{session[:active_player].marker} wins!'
+			message = "#{session[:active_player].marker} is the winner!"
 
 			player1 = session[:player1]
 			player2 = session[:player2]
 			winner = session[:active_player].marker
-					db.exec("INSERT INTO tictactoe(player1, player2, winner) VALUES('#{session[:pname1]}  #{session[:player1]}', '#{session[:pname2]}  #{session[:player2]}', '#{session[:active_player].marker} #{message}')")
+			db.exec("INSERT INTO tictactoe(player1, player2, winner) VALUES('#{session[:pname1]}#{player1}', '#{session[:pname2]}#{player2}',  '#{message}')")
 			erb :game_over, :locals => {board: session[:board], message: message}
 		
 		elsif session[:board].full_board?
 
 			message = 'Cats Game!'
 
-			db.exec("INSERT INTO tictactoe(player1, player2, winner) VALUES('#{session[:pname1]}  #{session[:player1]}', '#{session[:pname2]}  #{session[:player2]}',  '#{message}')")
+			db.exec("INSERT INTO tictactoe(player1, player2, winner) VALUES('#{session[:pname1]}#{player1}', '#{session[:pname2]} #{player2}',  '#{message}')")
 			erb :game_over, :locals => {board: session[:board], message: message}
 
 		else
@@ -172,13 +171,13 @@ db = PG::Connection.new(db_params)
 	get '/game_results' do
 		tictactoe = db.exec("Select * From tictactoe");
 		erb :game_results, locals: {tictactoe: tictactoe}
-		
+
+	end
+	get '/delete_all' do
 	end
 
-	post '/game_results' do
-
-		session[:player1] = params[:player1]
-		session[:player2] = params[:player2]
-		session[:winner] = params[:winner]
-		
-	end
+	post '/delete_all' do
+		tictactoe = db.exec("Select * From tictactoe");
+ 		db.exec("TRUNCATE TABLE tictactoe");
+ 		redirect '/game_results'
+ 	end 		  

@@ -1,4 +1,8 @@
-require "sinatra"
+require 'rubygems'
+require 'sinatra'
+require 'pony'
+require 'pg'
+
 require_relative 'board_app.rb'
 require_relative 'unbeatable_app.rb'
 require_relative 'classes_app.rb'
@@ -6,11 +10,25 @@ require_relative 'classes_app.rb'
 #that I have taken out the console human aspects. I left the original files intact
 #for future reference and possible teaching tools.
 enable :sessions
+load './local_env.rb' if File.exists?('./local_env.rb')
+
+
+db_params = {
+	host: ENV['host'],
+	port: ENV['port'],
+	dbname: ENV['dbname'],
+	user: ENV['user'],
+	password: ENV['password']
+}
+
+db = PG::Connection.new(db_params)
 
 	get '/' do
 	
 		session[:board] = Board.new
 		#Creating a new instance of the class Board
+		phonebook = db.exec("Select * From tictactoe");
+		
 		erb :welcome, :locals => {board: session[:board]}
 
 	end
@@ -20,6 +38,8 @@ enable :sessions
 		session[:player2_type] = params[:player2]
 		session[:human1] = 'no'
 		session[:human2] = 'no'
+		session[:pname1] = params[:pname1]
+		session[:pname2] = params[:pname2]
 		#Starting at no until Human is selected and then becomes yes.
 		if session[:player1_type] == 'Human'
 			session[:player1] = Human.new('X')
@@ -53,7 +73,7 @@ enable :sessions
 		# 	redirect '/'
 		end
 
-		session[:active_player] = session[:player1]
+		session[:active_player] = session[:player1] 
 		#determines which player is the current or active player, 
 		#if human, go to board, if AI go to make_move
 		if session[:human1] == 'yes'
@@ -70,6 +90,7 @@ enable :sessions
 	end
 
 	get '/make_move' do
+
 		# This will go through the functions passing in the variables, designed to determine the next move and 
 		#update the position for the AI as such
 		move = session[:active_player].get_move(session[:board].ttt_board)
@@ -82,7 +103,7 @@ enable :sessions
 	post '/human_move' do
 
 		move = params[:choice].to_i - 1
-		#Checks to see the if the position chosed by the human user is valid, if so then 
+		#Checks to see the if the position chosen by the human user is valid, if so then 
 		#update said position.
 		if session[:board].valid_position?(move)
 			puts move
@@ -102,7 +123,10 @@ enable :sessions
 		if session[:board].winner?(session[:active_player].marker)
 
 			message = "#{session[:active_player].marker} is the winner!"
-
+			player1 = session[:player1]
+			player2 = session[:player2]
+			winner = session[:active_player].marker
+			db.exec("INSERT INTO tictactoe(player1, player2, winner) VALUES('pname1 #{session[:player1]}', 'pname2 #{session[:player2]}', '#{session[:active_player].marker}')");
 			erb :game_over, :locals => {board: session[:board], message: message}
 		
 		elsif session[:board].full_board?
@@ -125,8 +149,9 @@ enable :sessions
 			end
 		end
 
-	end
 
+
+	end	
 	get '/clear_sessions' do
 		#A link appears under the game over display of the board to play again. This link
 		#erases and resets all the sessions, and takes you to the welcome page to try again.

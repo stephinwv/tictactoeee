@@ -7,15 +7,16 @@
     <th>X</th>
     <th>O</th>
     <th>Result</th>
+    <th>Time</th>
    
   </tr>
  
 <%tictactoe.each do |value|%>
 <tr>
-<td><%=value['x']   %> </td>
-<td><%=value['o']   %> </td> 
-
-<td><%=value['result']   %> </td>
+<td><%=value['x']   %></td>
+<td><%=value['o']   %></td> 
+<td><%=value['result']   %></td>
+<td><%=value['time']  %></td>
 
 </tr>
 <%end%>

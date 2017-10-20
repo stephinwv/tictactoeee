@@ -237,54 +237,56 @@ class UnbeatableAI
 		move
 
 	end
+#Decided to go with check for fork function and then take fork function, 
+#but I wanted to leave this intact for future reference and/or teaching aid.
 
-	def take_block_fork(ttt_board, player)
-		#Fork: Create an opportunity where the player has two threats to win 
-     	#(two non-blocked lines of 2).
-     	#Blocking an opponent's fork: 
-     	#Option 1: The player should create two in a row to force the opponent into defending, 
-     	#as long as it doesn't result in them creating a fork. 
-     	#For example, if "X" has two opposite corners and "O" has the center, 
-     	#{}"O" must not play a corner in order to win. 
-     	#(Playing a corner in this scenario creates a fork for "X" to win.)
-     	#Option 2: If there is a configuration where the opponent can fork, 
-     	#the player should block that fork.
-		fork_combinations = [
-							[ttt_board[0],ttt_board[1],ttt_board[2]],
-							[ttt_board[3],ttt_board[4],ttt_board[5]],
-							[ttt_board[6], ttt_board[7], ttt_board[8]],
-							[ttt_board[0], ttt_board[3], ttt_board[6]],
-							[ttt_board[1],ttt_board[4], ttt_board[7]],
-							[ttt_board[2],ttt_board[5],ttt_board[8]], 
-							[ttt_board[0], ttt_board[4], ttt_board[8]],
-							[ttt_board[2],ttt_board[4],ttt_board[6]]
-							]
+	# def take_block_fork(ttt_board, player)
+	# 	#Fork: Create an opportunity where the player has two threats to win 
+ #     	#(two non-blocked lines of 2).
+ #     	#Blocking an opponent's fork: 
+ #     	#Option 1: The player should create two in a row to force the opponent into defending, 
+ #     	#as long as it doesn't result in them creating a fork. 
+ #     	#For example, if "X" has two opposite corners and "O" has the center, 
+ #     	#{}"O" must not play a corner in order to win. 
+ #     	#(Playing a corner in this scenario creates a fork for "X" to win.)
+ #     	#Option 2: If there is a configuration where the opponent can fork, 
+ #     	#the player should block that fork.
+	# 	fork_combinations = [
+	# 						[ttt_board[0],ttt_board[1],ttt_board[2]],
+	# 						[ttt_board[3],ttt_board[4],ttt_board[5]],
+	# 						[ttt_board[6], ttt_board[7], ttt_board[8]],
+	# 						[ttt_board[0], ttt_board[3], ttt_board[6]],
+	# 						[ttt_board[1],ttt_board[4], ttt_board[7]],
+	# 						[ttt_board[2],ttt_board[5],ttt_board[8]], 
+	# 						[ttt_board[0], ttt_board[4], ttt_board[8]],
+	# 						[ttt_board[2],ttt_board[4],ttt_board[6]]
+	# 						]
 
-		fork_positions = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[4,1,7],[2,5,8],[0,4,8],[2,4,6]]
+	# 	fork_positions = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[4,1,7],[2,5,8],[0,4,8],[2,4,6]]
 
-		fork_spot = []
-		i = []
+	# 	fork_spot = []
+	# 	i = []
 		
-		fork_combinations.each_with_index do |forking_line, index|
-			if forking_line.count(player) == 1 && forking_line.count { |x| x.is_a?(Integer) } == 2
-				i.push(index)
-			end
-		end
+	# 	fork_combinations.each_with_index do |forking_line, index|
+	# 		if forking_line.count(player) == 1 && forking_line.count { |x| x.is_a?(Integer) } == 2
+	# 			i.push(index)
+	# 		end
+	# 	end
 
-		i.each do |index|
-			fork_spot << fork_positions[index]
-		end
+	# 	i.each do |index|
+	# 		fork_spot << fork_positions[index]
+	# 	end
 		
-		fork_spot = fork_spot.flatten.sort
+	# 	fork_spot = fork_spot.flatten.sort
 
-		intersections = []
-		fork_spot.each do |spot|
-			if ttt_board[spot].is_a?(Integer)
-				intersections.push(spot)
-			end
-		end
+	# 	intersections = []
+	# 	fork_spot.each do |spot|
+	# 		if ttt_board[spot].is_a?(Integer)
+	# 			intersections.push(spot)
+	# 		end
+	# 	end
 
-		intersections
-	end
+	# 	intersections
+	# end
 
 end

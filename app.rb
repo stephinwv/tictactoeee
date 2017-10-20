@@ -49,13 +49,16 @@ db = PG::Connection.new(db_params)
 
 		elsif session[:player1_type] == 'Easy'
 			session[:player1] = Sequential.new('X')
+			session[:pname1] = 'Easy AI'
 			#Creates a new instance of the Sequential class
 		elsif session[:player1_type] == 'Medium'
 			session[:player1] = RandomAI.new('X')
 			#Creates a new instance of the RandomAI class
+			session[:pname1] = 'Medium AI'
 		elsif session[:player1_type] == 'Impossible!'
 			session[:player1] = UnbeatableAI.new('X')
 			#Creates a new instance of the UnbeatableAI class
+			session[:pname1] = 'Impossible AI'
 		end
 
 		if session[:player2_type] == 'Human'
@@ -64,12 +67,15 @@ db = PG::Connection.new(db_params)
 
 		elsif session[:player2_type] == 'Easy'
 			session[:player2] = Sequential.new('O')
+			session[:pname2] = 'Easy AI'
 
 		elsif session[:player2_type] == 'Medium'
 			session[:player2] = RandomAI.new('O')
+			session[:pname2] = 'Medium AI'
 
 		elsif session[:player2_type] == 'Impossible!'
 			session[:player2] = UnbeatableAI.new('O')
+			session[:pname2] = 'Impossible AI'
 		# else
 		# 	redirect '/'
 		end
@@ -96,7 +102,7 @@ db = PG::Connection.new(db_params)
 		#update the position for the AI as such
 		move = session[:active_player].get_move(session[:board].ttt_board)
 		session[:board].update_position(move, session[:active_player].marker)
-
+		
 		redirect '/check_game_state'
 
 	end
@@ -118,6 +124,7 @@ db = PG::Connection.new(db_params)
 	end
 
 	get '/check_game_state' do
+	
 		#Checks the status of the board, and gives a message of the results,
 		#whether there is a winner or a tie. If none of these scenerios are found then 
 		#another move will be made, until one is met
@@ -150,9 +157,10 @@ db = PG::Connection.new(db_params)
 			else
 				redirect '/make_move'
 			end
+		
 		end
 
-
+		
 
 	end	
 	get '/clear_sessions' do
@@ -173,3 +181,4 @@ db = PG::Connection.new(db_params)
 		erb :game_results, locals: {tictactoe: tictactoe}
 
 	end
+	

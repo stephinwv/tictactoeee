@@ -8,6 +8,7 @@ class Board
 
 	def update_position(position, marker)
 		ttt_board[position] = marker
+		sleep(1)
 	end
 
 	def valid_position?(position)

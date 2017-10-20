@@ -8,13 +8,17 @@ class Board
 
 	def update_position(position, marker)
 		ttt_board[position] = marker
-		sleep(1)
+		sleep(0.3)
+		#Added a delay so that there wasn't an instant update. 
+		#It gives the illusion that the computer is thinking.
 	end
 
 	def valid_position?(position)
 
 		if ttt_board[position] != 'X' && ttt_board[position] != 'O' && position.between?(0,8)
 			true
+			#If the board position is not x or o and is 0-8, 
+			#then it is a valid position and can be used.
 		else
 			false
 		end

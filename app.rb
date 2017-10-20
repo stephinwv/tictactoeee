@@ -130,7 +130,7 @@ db = PG::Connection.new(db_params)
 		#another move will be made, until one is met
 		if session[:board].winner?(session[:active_player].marker)
 
-			message = "#{session[:active_player].marker} is the winner!"
+			message = "#{session[:active_player].marker} Won!"
 
 			player1 = session[:player1]
 			player2 = session[:player2]
@@ -140,7 +140,7 @@ db = PG::Connection.new(db_params)
 		
 		elsif session[:board].full_board?
 
-			message = 'Cats Game!'
+			message = 'Kitty Kitty!'
 
 			db.exec("INSERT INTO tictactoe(x, o, result, time) VALUES('#{session[:pname1]}', '#{session[:pname2]}',  '#{message}', '#{Time.now}')")
 			erb :game_over, :locals => {board: session[:board], message: message}
@@ -157,7 +157,7 @@ db = PG::Connection.new(db_params)
 			else
 				redirect '/make_move'
 			end
-		
+
 		end
 
 		

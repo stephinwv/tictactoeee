@@ -4,31 +4,27 @@
 
 <table id="myTable">
   <tr class="header">
-    <th>player1</th>
-    <th>player2</th>
-    <th>winner</th>
+    <th>X</th>
+    <th>O</th>
+    <th>Result</th>
    
   </tr>
  
 <%tictactoe.each do |value|%>
 <tr>
-<td><%=value['player1']   %> </td>
-<td><%=value['player2']   %> </td> 
+<td><%=value['x']   %> </td>
+<td><%=value['o']   %> </td> 
 
-<td><%=value['winner']   %> </td>
+<td><%=value['result']   %> </td>
 
 </tr>
 <%end%>
 </table>
-<p class='link'><a href='/clear_sessions'><img src= "./img/playagain.jpg" style="width:150px; height:100px;"></a></p>
+<p class='link'><a href='/clear_sessions'><img src= "./img/playagain.jpg" style="width:150px; height:100px;"></a>
 
-<form action='/delete_all' method='post'>
 
-    
- <p class='link'><a href='/delete_all'><img src= "./img/delete_all.jpg" style="width:150px; height:100px;"></a>  </p>
+   
 
-</form>    
-</form>
   
 </center>
 </HTML>

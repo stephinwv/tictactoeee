@@ -1,6 +1,17 @@
 <link rel="stylesheet" href="css/style.css">
 <center><h1 class='title'>Tica Taca Toe</h1>
-<h1 class='title_3'><%=message%></h1></center>
+<h1 class='title_3'><%=message%></h1>
+<script type="text/javascript">
+document.write ('<p><span id="date-time">', new Date().toLocaleString(), '<\/span>.<\/p>')
+if (document.getElementById) onload = function () {
+    setInterval ("document.getElementById ('date-time').firstChild.data = new Date().toLocaleString()", 50)
+}
+</script>
+
+</center>
+
+
+
 <!-- Message is determined in the app.rb -->
 <!-- Dispalays the values of the final game board -->
 <table id="table_size">

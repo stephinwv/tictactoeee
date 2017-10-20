@@ -128,14 +128,14 @@ db = PG::Connection.new(db_params)
 			player1 = session[:player1]
 			player2 = session[:player2]
 			winner = session[:active_player].marker
-			db.exec("INSERT INTO tictactoe(player1, player2, winner) VALUES('#{session[:pname1]}#{player1}', '#{session[:pname2]}#{player2}',  '#{message}')")
+			db.exec("INSERT INTO tictactoe(x, o, result) VALUES('#{session[:pname1]}', '#{session[:pname2]}',  '#{message}')")
 			erb :game_over, :locals => {board: session[:board], message: message}
 		
 		elsif session[:board].full_board?
 
 			message = 'Cats Game!'
 
-			db.exec("INSERT INTO tictactoe(player1, player2, winner) VALUES('#{session[:pname1]}#{player1}', '#{session[:pname2]} #{player2}',  '#{message}')")
+			db.exec("INSERT INTO tictactoe(x, o, result) VALUES('#{session[:pname1]}', '#{session[:pname2]}',  '#{message}')")
 			erb :game_over, :locals => {board: session[:board], message: message}
 
 		else
@@ -173,11 +173,3 @@ db = PG::Connection.new(db_params)
 		erb :game_results, locals: {tictactoe: tictactoe}
 
 	end
-	get '/delete_all' do
-	end
-
-	post '/delete_all' do
-		tictactoe = db.exec("Select * From tictactoe");
- 		db.exec("TRUNCATE TABLE tictactoe");
- 		redirect '/game_results'
- 	end 		  

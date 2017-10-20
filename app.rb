@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'sinatra'
-require 'pony'
+
 require 'pg'
 
 require_relative 'board_app.rb'

@@ -245,7 +245,7 @@ class UnbeatableAI
      	#Option 1: The player should create two in a row to force the opponent into defending, 
      	#as long as it doesn't result in them creating a fork. 
      	#For example, if "X" has two opposite corners and "O" has the center, 
-     	#{}"O" must not play a corner in order to win. 
+     	#"O" must not play a corner in order to win. 
      	#(Playing a corner in this scenario creates a fork for "X" to win.)
      	#Option 2: If there is a configuration where the opponent can fork, 
      	#the player should block that fork.

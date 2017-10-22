@@ -18,7 +18,8 @@ body {
 }
 
 .square_size {
-	
+
+  	transition: transform 1s;
 	background-color: white;
 	border-radius: 25px;
 	border: none;
@@ -31,6 +32,9 @@ body {
  
 }
 
+.square_size:hover {
+  transform: rotate(1080deg);
+}
 .win_display {
 	background-color: white;
 	border: none;

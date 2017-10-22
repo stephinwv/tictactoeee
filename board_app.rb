@@ -8,7 +8,7 @@ class Board
 
 	def update_position(position, marker)
 		ttt_board[position] = marker
-		sleep(0.3)
+		
 		#Added a delay so that there wasn't an instant update. 
 		#It gives the illusion that the computer is thinking.
 	end

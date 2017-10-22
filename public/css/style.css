@@ -33,7 +33,7 @@ body {
 }
 
 .square_size:hover {
-  transform: rotate(1080deg);
+  transform: rotate(360deg);
 }
 .win_display {
 	background-color: white;

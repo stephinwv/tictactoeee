@@ -160,6 +160,7 @@ class UnbeatableAI
 
 		if empty.length > 0
 			move = empty.shift
+			#Shift will collect and remove the first position
 		else
 			move = 10
 		end
@@ -180,6 +181,7 @@ class UnbeatableAI
 
 		if empty.length > 0
 			move = empty.shift
+			#Shift will collect and remove the first position
 		else
 			move = 10
 		end
@@ -228,7 +230,9 @@ class UnbeatableAI
 
 			if
 				val.count(player) == 2 && val.count { |x| x.is_a?(Integer) } == 1
+				#If one player has 2 positions and one last position is a number
 				results = val.index { |x| x.is_a?(Integer) }
+				#Then results will be the index position of that number
 				move = winners[pos][results]
 			else
 				move

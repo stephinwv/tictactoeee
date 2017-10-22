@@ -60,7 +60,7 @@ body {
 #welcome {
 
 	font-size: 2em;
-	
+	font-family: American Typewriter;
 }
 #table_size {
 	
@@ -109,7 +109,7 @@ body {
 
 .title {
 	font-family: American Typewriter;
-	font-size: 5em;
+	font-size: 4em;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 500;
@@ -126,7 +126,7 @@ body {
 .title_2 {
 	font-family: American Typewriter;
 	text-shadow: 2px 2px 10px teal;
-	font-size: 4em;
+	font-size: 3em;
 
 	font-weight: 500;
 }
